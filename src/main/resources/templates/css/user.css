@@ -210,7 +210,7 @@ hr {
 /** SIDEBAR */
 
 #sidebar {
-	float: right;
+	--float: right;
 	width: 220px;
 	padding: 40px;
 }
