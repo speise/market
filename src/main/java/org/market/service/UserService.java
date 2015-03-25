@@ -18,6 +18,7 @@ public class UserService {
 	public String greeting() {
 
 		userRepository.save(new User("Name" + new Date()));
-		return new String("Response");
+		return new String("All users list here");
+
 	}
 }
