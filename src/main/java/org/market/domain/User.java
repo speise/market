@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.market.domain.utils.Role;
+import org.market.domain.utils.SHAMD5;
 
 @Entity
 public class User {
@@ -41,7 +42,7 @@ public class User {
 		this.name = name;
 		this.login = login;
 		this.email = email;
-		this.password = password;
+		this.password = getSecurePassword(password);
 		this.role = role;
 	}
 
@@ -82,7 +83,7 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = getSecurePassword(password);
 	}
 	
 	public Role getRole() {
@@ -127,6 +128,10 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", login=" + login + ", email=" + email + "]";
+	}
+	
+	private String getSecurePassword(String pass){
+		return new SHAMD5().getSecureString(pass);
 	}
 
 }
