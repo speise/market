@@ -78,4 +78,19 @@ public class UserService {
 		log.debug("REST request to delete User : {}", id);
 		userRepository.delete(id);
 	}
+	
+	/**
+	 * PUT /users -> update the User.
+	 */
+	@RequestMapping(value = "/users",
+            method = RequestMethod.PUT,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> update(@RequestBody User user) throws URISyntaxException {
+		log.debug("REST request to update User : {}", user);
+        if (user.getId() == null) {
+            return create(user);
+        }
+        userRepository.save(user);
+        return ResponseEntity.ok().build();
+	}
 }
